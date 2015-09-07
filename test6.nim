@@ -12,7 +12,7 @@ template myMap6(seq1: seq[int], f: expr): seq[int] =
 when isMainModule:
   var x = toSeq(1..1000)
   var s = 0
-  echo "test5: template map(), f is an expression (e.g., it+10+i), no type magic, hard coded types"
+  echo "test6: template map(), f is an expression (e.g., it+10+i), no type magic, hard coded types"
   var t = epochTime()
   for i in 0..<100_000:
     s += myMap6(x, it+10+i)[9]

@@ -1,7 +1,7 @@
 import sequtils
 import times
 
-template myMap4[T,U](seq1: seq[T], f: expr): seq[U] =
+template myMap4[T](seq1: seq[T], f: expr): expr =
   var result = newSeq[type(f(seq1[0]))](seq1.len)
   var i = 0
   for it in items(seq1):
