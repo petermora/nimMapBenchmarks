@@ -1,7 +1,7 @@
 import sequtils
 import times
 
-template myMap7[T,U](seq1: seq[T], f: expr): seq[U] =
+template myMap7*[T,U](seq1: seq[T], f: expr): seq[U] =
   type T = type(seq1[0])
   type S = type((
     block:
