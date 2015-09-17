@@ -33,27 +33,29 @@ nim c -d:release test11.nim
 # Results with ``gcc``:
 ```
 test0: call system.nim's map()
-50024000000,4.304346084594727
+50024000000,4.242323875427246
 test1: reimplement system.nim's map() here, and call that
-50024000000,2.766583919525146
+50024000000,2.706707000732422
 test2: reimplement system.nim's map() here with {.inline.}, and call that
-50024000000,2.775641918182373
+50024000000,2.728699922561646
 test3: map() where we iterate using it and not i
-50024000000,2.785139799118042
-test4: template map(), f is a function
-50024000000,3.160981178283691
+50024000000,2.694229125976562
+test4: template map(), f is a function, iterating i and not it
+50024000000,1.584940910339355
 test5: template map(), f is an expression (e.g., it+10+i)
-50024000000,3.000610113143921
-test5: template map(), f is an expression (e.g., it+10+i), no type magic, hard coded types
-50024000000,2.943650007247925
+50024000000,2.938762903213501
+test6: template map(), f is an expression (e.g., it+10+i), no type magic, hard coded types
+50024000000,2.894911050796509
 test7: template map(), f is an expression (e.g., it+10+i), iterating using index i and not it
-50024000000,2.724836111068726
+50024000000,1.637176990509033
 test8: template map(), f is an expression (e.g., it+10+i), iterating using index i and not it, no type magic
-50024000000,2.798559904098511
+50024000000,1.649657011032104
 test9: call test1's map() which is not (.inline.}
-50024000000,4.293527126312256
+50024000000,4.332103967666626
 test10: call test2's map() which is (.inline.}
-50024000000,2.735008955001831
+50024000000,2.73048996925354
 test11: call test7's map() which is a template
-50024000000,2.720563173294067
+50024000000,1.620115041732788
+test12: template map(), f is a function which is inlined by converting it to template
+50024000000,1.591434001922607
 ```
