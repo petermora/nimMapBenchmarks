@@ -16,6 +16,8 @@ macro tryToMakeTemplate(id: expr, f: expr): expr =
   else:
     # this is not correct, multiple call of myMap12 can result
     # in conflicting variable names. 
+    # I didn't get it work, also asked forum:
+    # http://forum.nim-lang.org/t/1630
     result = parseExpr("var " & $id & "{.gensym.} = " & $f)
 
 template myMap12[T](seq1: seq[T], f: expr): expr =
