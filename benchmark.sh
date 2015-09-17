@@ -10,6 +10,7 @@ nim c -d:release test8.nim
 nim c -d:release test9.nim
 nim c -d:release test10.nim
 nim c -d:release test11.nim
+nim c -d:release test12.nim
 ./test0
 ./test1
 ./test2
@@ -22,3 +23,4 @@ nim c -d:release test11.nim
 ./test9
 ./test10
 ./test11
+./test12

@@ -1,18 +1,17 @@
 import sequtils
 import times
+import future
 
 template myMap4[T](seq1: seq[T], f: expr): expr =
   var result = newSeq[type(f(seq1[0]))](seq1.len)
-  var i = 0
-  for it in items(seq1):
-    result[i] = f(it)
-    i += 1
+  for i in 0..<seq1.len:
+    result[i] = f(seq1[i])
   result
 
 when isMainModule:
   var x = toSeq(1..1000)
   var s = 0
-  echo "test4: template map(), f is a function"
+  echo "test4: template map(), f is a function, iterating i and not it"
   var t = epochTime()
   for i in 0..<100_000:
     s += myMap4(x, proc(x: int): int = x+10+i)[9]
