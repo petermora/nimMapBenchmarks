@@ -1,10 +1,11 @@
 import sequtils
 import times
 import macros
-import future
+#import future
 
 macro tryToMakeTemplate(id: expr, f: expr): expr =
   var f = f
+  # Converting x => x+1 required changes in future
   #if f.kind == nnkInfix and f.len > 2 and $(f[0]) == "=>":
   #  f = arrowLambdaImpl(f[1], f[2])
   if f.kind == nnkLambda:
@@ -13,11 +14,11 @@ macro tryToMakeTemplate(id: expr, f: expr): expr =
     for i in 1..<f.len:
       result.add(f[i])
   else:
+    # this is not correct, multiple call of myMap12 can result
+    # in conflicting variable names. 
     result = parseExpr("var " & $id & "{.gensym.} = " & $f)
-    echo "AAA"
-    echo treeRepr(result)
 
-template myMap12[T,U](seq1: seq[T], f: expr): seq[U] =
+template myMap12[T](seq1: seq[T], f: expr): expr =
   tryToMakeTemplate(templateF, f)
   var result = newSeq[type(templateF(seq1[0]))](seq1.len)
   for i in 0..<seq1.len:
