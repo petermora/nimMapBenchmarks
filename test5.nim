@@ -2,6 +2,7 @@ import sequtils
 import times
 
 template myMap5[T](seq1: seq[T], f: expr): expr =
+  let s = seq1
   type T = type(seq1[0])
   type S = type((
     block:

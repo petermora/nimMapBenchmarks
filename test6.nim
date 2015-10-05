@@ -2,9 +2,10 @@ import sequtils
 import times
 
 template myMap6(seq1: seq[int], f: expr): seq[int] =
-  var result = newSeq[int](seq1.len)
+  let s = seq1
+  var result = newSeq[int](s.len)
   var i = 0
-  for it{.inject.} in items(seq1):
+  for it{.inject.} in items(s):
     result[i] = f
     i += 1
   result

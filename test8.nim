@@ -2,9 +2,10 @@ import sequtils
 import times
 
 template myMap8(seq1: seq[int], f: expr): seq[int] =
-  var result = newSeq[int](seq1.len)
-  for i in 0..<seq1.len:
-    var it{.inject.} = seq1[i]
+  let s = seq1
+  var result = newSeq[int](s.len)
+  for i in 0..<s.len:
+    var it{.inject.} = s[i]
     result[i] = f
   result
 

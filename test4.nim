@@ -2,10 +2,12 @@ import sequtils
 import times
 import future
 
-template myMap4[T](seq1: seq[T], f: expr): expr =
-  var result = newSeq[type(f(seq1[0]))](seq1.len)
-  for i in 0..<seq1.len:
-    result[i] = f(seq1[i])
+template myMap4[T](seq1: seq[T], fIn: expr): expr =
+  let s = seq1
+  let f = fIn
+  var result = newSeq[type(f(s[0]))](s.len)
+  for i in 0..<s.len:
+    result[i] = f(s[i])
   result
 
 when isMainModule:

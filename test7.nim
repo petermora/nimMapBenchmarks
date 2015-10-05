@@ -2,14 +2,15 @@ import sequtils
 import times
 
 template myMap7*[T](seq1: seq[T], f: expr): expr =
-  type T = type(seq1[0])
+  let s = seq1
+  type T = type(s[0])
   type S = type((
     block:
       var it{.inject.}: T
       f))
-  var result = newSeq[S](seq1.len)
-  for i in 0..<seq1.len:
-    var it{.inject.} = seq1[i]
+  var result = newSeq[S](s.len)
+  for i in 0..<s.len:
+    var it{.inject.} = s[i]
     result[i] = f
   result
 
